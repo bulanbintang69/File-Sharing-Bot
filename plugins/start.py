@@ -13,7 +13,7 @@ from database.sql import add_user, query_msg, full_userbase
 
 #=====================================================================================##
 
-WAIT_MSG = """"<b>Processing ...\nProses ...</b>"""
+WAIT_MSG = """"<b>🇬🇧Processing ...\n🇮🇩Proses ...</b>"""
 
 REPLY_ERROR = """<code>Use this command as a replay to any telegram message with out any spaces.</code>"""
 
@@ -57,11 +57,11 @@ async def start_command(client: Client, message: Message):
                 ids = [int(int(argument[1]) / abs(client.db_channel.id))]
             except:
                 return
-        temp_msg = await message.reply("Please wait...\nTunggu sebentat...")
+        temp_msg = await message.reply("🇬🇧Please wait...\n🇮🇩Tunggu sebenta...")
         try:
             messages = await get_messages(client, ids)
         except:
-            await message.reply_text("Something went wrong..!\nAda yang salah..!")
+            await message.reply_text("🇬🇧Something went wrong..!\n🇮🇩Ada yang salah..!")
             return
         await temp_msg.delete()
 
@@ -90,8 +90,10 @@ async def start_command(client: Client, message: Message):
         reply_markup = InlineKeyboardMarkup(
             [
                 [
-                    InlineKeyboardButton("😊 About Me", callback_data = "about"),
-                    InlineKeyboardButton("🔒 Close", callback_data = "close")
+                    InlineKeyboardButton("🇬🇧 About Me", callback_data = "about"),
+                    InlineKeyboardButton("🇮🇩 Tentangku", callback_data = "about"),
+                    InlineKeyboardButton("🇬🇧 Close", callback_data = "close")
+                    InlineKeyboardButton("🇮🇩 Kembali", callback_data = "close")
                 ]
             ]
         )
@@ -114,7 +116,10 @@ async def not_joined(client: Client, message: Message):
     buttons = [
         [
             InlineKeyboardButton(
-                "Join Channel",
+                "🇬🇧Join Channel",
+                url = client.invitelink)
+            InlineKeyboardButton(
+                "🇮🇩Join Channel",
                 url = client.invitelink)
         ]
     ]
@@ -122,7 +127,11 @@ async def not_joined(client: Client, message: Message):
         buttons.append(
             [
                 InlineKeyboardButton(
-                    text = 'Ulangi',
+                    text = '🇬🇧Try Again',
+                    url = f"https://t.me/{client.username}?start={message.command[1]}"
+                )
+                InlineKeyboardButton(
+                    text = '🇮🇩Ulangi',
                     url = f"https://t.me/{client.username}?start={message.command[1]}"
                 )
             ]
@@ -160,7 +169,7 @@ async def send_text(client: Bot, message: Message):
         deleted = 0
         unsuccessful = 0
         
-        pls_wait = await message.reply("<i>Broadcasting Message.. This will Take Some Time\nProses Pesan Siaran.. Memerlukan Beberapa Waktu</i>")
+        pls_wait = await message.reply("<i>🇬🇧Broadcasting Message.. This will Take Some Time\n🇮🇩Proses Pesan Siaran.. Memerlukan Beberapa Waktu</i>")
         for row in query:
             chat_id = int(row[0])
             try:
@@ -179,7 +188,7 @@ async def send_text(client: Bot, message: Message):
                 pass
             total += 1
         
-        status = f"""<b><u>Broadcast Completed\n Pesan Siaran Selesai</u>
+        status = f"""<b><u>🇬🇧Broadcast Completed\n🇮🇩Pesan Siaran Selesai</u>
 
 Total Users: <code>{total}</code>
 Total Pengguna: <code>{total}</code>
