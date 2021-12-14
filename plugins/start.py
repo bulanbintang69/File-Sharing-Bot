@@ -13,7 +13,7 @@ from database.sql import add_user, query_msg, full_userbase
 
 #=====================================================================================##
 
-WAIT_MSG = """"<b>Processing ...</b>"""
+WAIT_MSG = """"<b>Processing ...\nProses ...</b>"""
 
 REPLY_ERROR = """<code>Use this command as a replay to any telegram message with out any spaces.</code>"""
 
@@ -57,11 +57,11 @@ async def start_command(client: Client, message: Message):
                 ids = [int(int(argument[1]) / abs(client.db_channel.id))]
             except:
                 return
-        temp_msg = await message.reply("Please wait...")
+        temp_msg = await message.reply("Please wait...\nTunggu sebentat...")
         try:
             messages = await get_messages(client, ids)
         except:
-            await message.reply_text("Something went wrong..!")
+            await message.reply_text("Something went wrong..!\nAda yang salah..!")
             return
         await temp_msg.delete()
 
@@ -122,7 +122,7 @@ async def not_joined(client: Client, message: Message):
         buttons.append(
             [
                 InlineKeyboardButton(
-                    text = 'Try Again',
+                    text = 'Ulangi',
                     url = f"https://t.me/{client.username}?start={message.command[1]}"
                 )
             ]
@@ -160,7 +160,7 @@ async def send_text(client: Bot, message: Message):
         deleted = 0
         unsuccessful = 0
         
-        pls_wait = await message.reply("<i>Broadcasting Message.. This will Take Some Time</i>")
+        pls_wait = await message.reply("<i>Broadcasting Message.. This will Take Some Time\nProses Pesan Siaran.. Memerlukan Beberapa Waktu</i>")
         for row in query:
             chat_id = int(row[0])
             try:
@@ -179,13 +179,18 @@ async def send_text(client: Bot, message: Message):
                 pass
             total += 1
         
-        status = f"""<b><u>Broadcast Completed</u>
+        status = f"""<b><u>Broadcast Completed\n Pesan Siaran Selesai</u>
 
 Total Users: <code>{total}</code>
+Total Pengguna: <code>{total}</code>
 Successful: <code>{successful}</code>
+Berhasil: : <code>{successful}</code>
 Blocked Users: <code>{blocked}</code>
+Pengguna Diblokir: : <code>{blocked}</code>
 Deleted Accounts: <code>{deleted}</code>
-Unsuccessful: <code>{unsuccessful}</code></b>"""
+Akun Terhapus: : <code>{deleted}</code>
+Unsuccessful: <code>{unsuccessful}</code></b>
+Tidak Berhasi:code>{unsuccessful}</code></b>"""
         
         return await pls_wait.edit(status)
 
