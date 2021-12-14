@@ -1,4 +1,4 @@
-#(©)kakahsi
+#(©)Codexbotz
 
 from pyrogram import __version__
 from bot import Bot
@@ -10,12 +10,12 @@ async def cb_handler(client: Bot, query: CallbackQuery):
     data = query.data
     if data == "about":
         await query.message.edit_text(
-            text = f"📌ℂℍ𝔸ℕℕ𝔼𝕃𝕊 ℙ𝔸ℝ𝕋ℕ𝔼ℝ𝕊📌\n<b>§ 01 : <a href='https://t.me/pikapikacuk44'>Channel</a>\n§ 02 : <a href='https://t.me/Suryapro69'>Channel</a>\n§ 03 : <a href='https://t.me/gudangsyahwat76'>Channel</a>\n§ Twitter : <a href='https://twitter.com/BFROOMS?s=08'>@BFROOMS</a>\n§ Facebook : - \n§ Owner : @K4N3N</b>",
+            text = f"<b>○ Creator : <a href='tg://user?id={OWNER_ID}'>This Person</a>\n○ Language : <code>Python3</code>\n○ Library : <a href='https://docs.pyrogram.org/'>Pyrogram asyncio {__version__}</a>\n○ Source Code : <a href='https://github.com/CodeXBotz/File-Sharing-Bot'>Click here</a>\n○ Channel : @CodeXBotz\n○ Support Group : @CodeXBotzSupport</b>",
             disable_web_page_preview = True,
             reply_markup = InlineKeyboardMarkup(
                 [
                     [
-                        InlineKeyboardButton("𝕄𝔼ℕ𝕌", callback_data = "close")
+                        InlineKeyboardButton("🔒 Close", callback_data = "close")
                     ]
                 ]
             )
