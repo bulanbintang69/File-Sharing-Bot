@@ -93,6 +93,10 @@ async def start_command(client: Client, message: Message):
                     InlineKeyboardButton("Info Bot", callback_data = "about"),
                     InlineKeyboardButton("Close", callback_data = "close")
                 ]
+                [
+                    InlineKeyboardButton("Info Bot", callback_data = "about"),
+                    InlineKeyboardButton("Close", callback_data = "close")
+                ]
             ]
         )
         await message.reply_text(
@@ -116,6 +120,11 @@ async def not_joined(client: Client, message: Message):
             InlineKeyboardButton(
                 "Join Channel",
                 url = client.invitelink)
+        ]
+        [
+            InlineKeyboardButton(
+                "Join Group",
+                callback_data = "about")
         ]
     ]
     try:
